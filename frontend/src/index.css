@@ -1,0 +1,205 @@
+/* ═══════════════════════════════════════════════════════════
+   Tailwind v4 + Cyberpunk Design System
+   Clinical dark. Neon semantic accents. Glass cards. No slop.
+   ═══════════════════════════════════════════════════════════ */
+
+@import "tailwindcss";
+
+/* ─── Custom Theme ───────────────────────────────────────── */
+@theme {
+  --color-void: #09090b;
+  --color-abyss: #0c0c10;
+  --color-obsidian: #111116;
+  --color-slate-dark: #18181d;
+  --color-slate-mid: #27272e;
+  --color-glass-bg: rgba(17, 17, 22, 0.65);
+  --color-glass-border: rgba(63, 63, 70, 0.35);
+  --color-glass-border-hover: rgba(99, 102, 241, 0.3);
+
+  --color-neon-indigo: #818cf8;
+  --color-neon-violet: #a78bfa;
+  --color-neon-pink: #f472b6;
+  --color-neon-cyan: #22d3ee;
+
+  --color-sev-critical: #ef4444;
+  --color-sev-critical-dim: rgba(239, 68, 68, 0.12);
+  --color-sev-critical-border: rgba(239, 68, 68, 0.4);
+  --color-sev-high: #f97316;
+  --color-sev-high-dim: rgba(249, 115, 22, 0.12);
+  --color-sev-high-border: rgba(249, 115, 22, 0.4);
+  --color-sev-medium: #eab308;
+  --color-sev-medium-dim: rgba(234, 179, 8, 0.10);
+  --color-sev-medium-border: rgba(234, 179, 8, 0.35);
+  --color-sev-low: #22c55e;
+  --color-sev-low-dim: rgba(34, 197, 94, 0.10);
+  --color-sev-low-border: rgba(34, 197, 94, 0.35);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-void);
+  color: #f4f4f5;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient light wash — not a gradient blob, just atmosphere */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 85%, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Scrollbar — minimal, not Chrome-default ────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.5); }
+
+::selection {
+  background: rgba(129, 140, 248, 0.35);
+  color: white;
+}
+
+/* ─── Glass Card ─────────────────────────────────────────── */
+.glass {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass:hover {
+  border-color: var(--color-glass-border-hover);
+}
+
+/* ─── Neon Glow Borders (severity-driven, not decorative) ── */
+.glow-critical {
+  border-color: var(--color-sev-critical-border);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.08), inset 0 0 20px rgba(239, 68, 68, 0.03);
+}
+.glow-high {
+  border-color: var(--color-sev-high-border);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.08), inset 0 0 20px rgba(249, 115, 22, 0.03);
+}
+.glow-medium {
+  border-color: var(--color-sev-medium-border);
+  box-shadow: 0 0 15px rgba(234, 179, 8, 0.06);
+}
+.glow-low {
+  border-color: var(--color-sev-low-border);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.06);
+}
+
+/* ─── Code Textarea ──────────────────────────────────────── */
+.code-input {
+  background: var(--color-abyss);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 12px;
+  color: #e4e4e7;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  padding: 20px;
+  resize: vertical;
+  width: 100%;
+  min-height: 320px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  tab-size: 4;
+}
+
+.code-input:focus {
+  border-color: rgba(129, 140, 248, 0.5);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1), 0 0 30px rgba(99, 102, 241, 0.06);
+}
+
+.code-input::placeholder {
+  color: #3f3f46;
+  font-style: normal;
+}
+
+/* ─── Masonry Overrides ──────────────────────────────────── */
+.masonry-grid {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.masonry-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.25), 0 0 60px rgba(139, 92, 246, 0.1); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.45s ease both;
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ─── Severity Bar (top accent on vuln cards) ────────────── */
+.sev-bar {
+  height: 2px;
+  width: 100%;
+  border-radius: 2px 2px 0 0;
+}
+.sev-bar-critical { background: linear-gradient(90deg, var(--color-sev-critical), #f87171); }
+.sev-bar-high { background: linear-gradient(90deg, var(--color-sev-high), #fb923c); }
+.sev-bar-medium { background: linear-gradient(90deg, var(--color-sev-medium), #facc15); }
+.sev-bar-low { background: linear-gradient(90deg, var(--color-sev-low), #4ade80); }
+
+/* ─── Risk Circle SVG ────────────────────────────────────── */
+.risk-ring-bg {
+  fill: none;
+  stroke: var(--color-slate-mid);
+  stroke-width: 6;
+}
+.risk-ring-fill {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s ease;
+}
