@@ -1,0 +1,58 @@
+# ═══════════════════════════════════════════════════════════
+# Docker Compose — Smart Contract Auditor Production Stack
+# Usage: docker compose up -d
+# ═══════════════════════════════════════════════════════════
+
+services:
+  # ─── FastAPI Backend ───────────────────────────────────
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: auditor-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Supabase (free PostgreSQL)
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+
+      # SQLite fallback (used if Supabase not configured)
+      - DATABASE_URL=sqlite:///./auditor.db
+
+      # LLM Providers (priority: Ollama → Groq → Claude → OpenAI)
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5-coder}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL=${GROQ_MODEL:-llama-3.3-70b-versatile}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+      - ENVIRONMENT=production
+    networks:
+      - auditor-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ─── React Frontend (Nginx) ────────────────────────────
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: auditor-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - auditor-net
+
+networks:
+  auditor-net:
+    driver: bridge
