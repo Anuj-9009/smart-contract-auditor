@@ -2,7 +2,7 @@
 <div align="center">
   <br />
   <!-- Glowing Cyberpunk Animated Banner (Pure Vector CSS SVG) -->
-  <img src="./assets/header.svg" width="100%" alt="banner">
+  <img src="assets/header.svg" width="100%" alt="banner">
 
   <p>
     <br />
@@ -133,5 +133,8 @@ MIT License — see [LICENSE](LICENSE) for details.
 ---
 
 <div align="center" style="margin-top: 40px;">
-  <img src="././assets/footer.svg" width="100%" alt="footer">
+  <img src="assets/footer.svg" width="100%" alt="footer">
 </div>
+<p style="font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; color: #ef4444; margin: 0; text-align: center;">
+  built by ANUJ with ❤️ to the raw frequencies of kendrick lamar's 'HUMBLE.'
+</p>
