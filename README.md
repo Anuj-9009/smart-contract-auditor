@@ -1,19 +1,10 @@
 <!-- Header Block -->
 <div align="center">
   <br />
-  <!-- Glowing Cyberpunk Animated Banner (Pure Vector CSS SVG) -->
-  <img src="assets/header.svg" width="100%" alt="banner">
-
-  <p>
-    <br />
-    <img src="https://img.shields.io/badge/Python-3.9+-ef4444?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-    <img src="https://img.shields.io/badge/FastAPI-0.104+-f59e0b?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
-    <img src="https://img.shields.io/badge/React-18+-ef4444?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-    <img src="https://img.shields.io/badge/Ollama-Local--LLM-f59e0b?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" />
-  </p>
+  <img src="assets/header-v2.svg" width="100%" alt="banner">
   
   <p>
-    A highly-polished, AI-powered security analysis tool for Solidity smart contracts. Built entirely on a <b>Zero-Dollar Architecture</b> using free-tier cloud databases and local privacy-preserving LLMs.
+    This project was engineered to deliver premium AI auditing without the massive API costs typically associated with LLM applications.
   </p>
 </div>
 
@@ -30,9 +21,7 @@
 
 ---
 
-## ✨ The Zero-Dollar Architecture
 
-This project was engineered to deliver premium AI auditing without the massive API costs typically associated with LLM applications.
 
 * **LLM Engine**: Runs locally via **[Ollama](https://ollama.com/)** (`qwen2.5-coder` or `llama3`) for absolute zero cost and total privacy. Falls back to **Groq**'s generous free tier for cloud inference if local hardware is insufficient.
 * **Database**: Powered by **[Supabase](https://supabase.com/)**'s free tier (PostgreSQL), providing a robust cloud database without hosting fees. Includes a local SQLite fallback for complete offline capability.
@@ -133,7 +122,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 ---
 
 <div align="center" style="margin-top: 40px;">
-  <img src="assets/footer.svg" width="100%" alt="footer">
+  <img src="assets/footer-v2.svg" width="100%" alt="footer">
 </div>
 <p style="font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; color: #ef4444; margin: 0; text-align: center;">
   built by ANUJ with ❤️ to the raw frequencies of kendrick lamar's 'HUMBLE.'
