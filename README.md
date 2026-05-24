@@ -2,46 +2,7 @@
 <div align="center">
   <br />
   <!-- Glowing Cyberpunk Animated Banner (Pure Vector CSS SVG) -->
-  <svg width="100%" height="160" viewBox="0 0 800 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: #09090b; border-radius: 24px; border: 1px solid rgba(239, 68, 68, 0.15);">
-    <style>
-      .text-title {
-        font-family: 'Sora', 'Inter', system-ui, -apple-system, sans-serif;
-        font-weight: 800;
-        font-size: 42px;
-        fill: url(#cyberGradient);
-        filter: drop-shadow(0px 10px 15px rgba(239, 68, 68, 0.3));
-      }
-      .text-subtitle {
-        font-family: 'Inter', system-ui, sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        fill: #a1a1aa;
-        letter-spacing: 0.2em;
-      }
-      .glow-core {
-        animation: floatCore 6s ease-in-out infinite alternate;
-      }
-      @keyframes floatCore {
-        0% { transform: translate(0px, 0px) scale(1); filter: blur(25px); opacity: 0.35; }
-        100% { transform: translate(-20px, 10px) scale(1.1); filter: blur(35px); opacity: 0.55; }
-      }
-    </style>
-    <!-- Background Neon Blobs -->
-    <circle class="glow-core" cx="250" cy="80" r="60" fill="#dc2626" />
-    <circle class="glow-core" cx="550" cy="80" r="50" fill="#f59e0b" style="animation-delay: -3s;" />
-    
-    <!-- Title Text -->
-    <text x="50%" y="80" dominant-baseline="middle" text-anchor="middle" class="text-title">CONTRACT AUDITOR AI</text>
-    <text x="50%" y="120" dominant-baseline="middle" text-anchor="middle" class="text-subtitle">ZERO-API COST SOLIDITY SECURITY ENGINE</text>
-    
-    <defs>
-      <linearGradient id="cyberGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#ef4444" />
-        <stop offset="50%" stop-color="#f59e0b" />
-        <stop offset="100%" stop-color="#ef4444" />
-      </linearGradient>
-    </defs>
-  </svg>
+  <img src="assets/banner.svg" width="100%" alt="banner">
 
   <p>
     <br />
@@ -62,44 +23,7 @@
 <div align="center">
   <h3>🛡️ Active Static Audit Scanner</h3>
   <br />
-  <svg width="640" height="150" viewBox="0 0 640 150" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: #09090b; border-radius: 20px; border: 1px solid rgba(239,68,68,0.25); box-shadow: 0 10px 30px rgba(239,68,68,0.15);">
-    <style>
-      .scanner-beam {
-        animation: scanSweep 3s infinite ease-in-out alternate;
-      }
-      .code-line {
-        font-family: 'Fira Code', monospace;
-        font-size: 11px;
-        fill: #52525b;
-      }
-      .vuln-glow {
-        animation: pulseVuln 1.5s infinite alternate ease-in-out;
-      }
-      @keyframes scanSweep {
-        0% { y: 20; opacity: 0.2; }
-        50% { opacity: 0.85; }
-        100% { y: 130; opacity: 0.2; }
-      }
-      @keyframes pulseVuln {
-        0% { fill: #7f1d1d; stroke: #ef4444; filter: drop-shadow(0 0 2px #ef4444); }
-        100% { fill: #ef4444; stroke: #f87171; filter: drop-shadow(0 0 10px #ef4444); }
-      }
-    </style>
-    
-    <!-- Code Mock Background -->
-    <text x="40" y="35" class="code-line">01: contract SecurityScanner {</text>
-    <text x="40" y="55" class="code-line">02:     function transferFunds(address payable to) public {</text>
-    <text x="40" y="75" class="code-line" style="fill: #f87171; font-weight: bold;">03:         to.call{value: address(this).balance}(""); // &lt;-- REENTRANCY ATTACK</text>
-    <text x="40" y="95" class="code-line">04:         balances[msg.sender] = 0;</text>
-    <text x="40" y="115" class="code-line">05:     }</text>
-
-    <!-- Scan Line -->
-    <rect class="scanner-beam" x="30" y="20" width="580" height="2" fill="#ef4444" filter="drop-shadow(0 0 4px #ef4444)" />
-    
-    <!-- Vulnerability Found Circle -->
-    <circle class="vuln-glow" cx="500" cy="72" r="8" stroke-width="2" />
-    <text x="515" y="76" font-family="'Sora', sans-serif" font-weight="bold" font-size="9px" fill="#ef4444">CRITICAL VULN</text>
-  </svg>
+  <img src="assets/visualizer.svg" width="640" alt="visualizer">
 </div>
 
 <br />
@@ -210,6 +134,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center" style="background: radial-gradient(circle, rgba(239,68,68,0.08) 0%, transparent 80%); padding: 24px; border-radius: 16px;">
   <p style="font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; color: #ef4444; margin: 0;">
-    built by anuj with ❤️ to the raw frequencies of kendrick lamar's "HUMBLE."
+    built by ANUJ with ❤️ to the raw frequencies of kendrick lamar's "HUMBLE."
   </p>
 </div>
