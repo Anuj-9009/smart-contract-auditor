@@ -1,123 +1,90 @@
-<!-- Header Block -->
-<div align="center">
-  <br />
-  <img src="assets/header-v2.svg" width="100%" alt="banner">
-  
-  <p>
-    This project was engineered to deliver premium AI auditing without the massive API costs typically associated with LLM applications.
-  </p>
-</div>
+# Smart Contract Auditor 🛡️🔍
 
-<hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(239, 68, 68, 0), rgba(239, 68, 68, 0.4), rgba(239, 68, 68, 0));" />
+<p>
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/FastAPI-0.104+-green?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/React-18+-blue?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/Ollama-Local%20LLM-orange?style=for-the-badge" alt="Ollama" />
+</p>
 
-<!-- Cyber Audit Scanner Visual (Pure HTML/CSS SVG) -->
-<div align="center">
-  <h3>🛡️ Active Static Audit Scanner</h3>
-  <br />
-  <img src="assets/visualizer.svg" width="640" alt="visualizer">
-</div>
-
-<br />
+Smart Contract Auditor is a highly-polished, AI-powered security analysis tool designed specifically for Solidity smart contracts. Operating on a **Zero-Dollar Architecture** by utilizing local privacy-preserving LLMs and free-tier cloud databases, it identifies critical vulnerabilities, evaluates contract integrity, and delivers full-stack auditing reports in real-time.
 
 ---
 
+## ✨ Features
 
-
-* **LLM Engine**: Runs locally via **[Ollama](https://ollama.com/)** (`qwen2.5-coder` or `llama3`) for absolute zero cost and total privacy. Falls back to **Groq**'s generous free tier for cloud inference if local hardware is insufficient.
-* **Database**: Powered by **[Supabase](https://supabase.com/)**'s free tier (PostgreSQL), providing a robust cloud database without hosting fees. Includes a local SQLite fallback for complete offline capability.
-* **Backend**: **FastAPI**, designed to be deployed for free on platforms like Render or Railway.
-* **Frontend**: **React + Vite** with Tailwind CSS v4, optimized for static hosting on Vercel or Netlify.
+- **🔍 AST Vulnerability Sweeper:** Combines rule-based Static Analysis with deep abstract syntax tree (AST) scans to detect common vulnerability anti-patterns (such as reentrancy, timestamp dependencies, reentrancy vectors, and integer overflows).
+- **🤖 Private Local AI Audit:** Interfaces with `Ollama` (`codellama` or `llama3`) running locally, keeping your smart contract intellectual property 100% private and eliminating cloud API costs.
+- **🗄️ SQL Supabase Database:** Manages and persists projects, audit records, and history tables using standard Supabase PostgreSQL integrations with active Row-Level Security (RLS) protections.
+- **🎨 Glassmorphic Interface Workspace:** An incredibly responsive React 18 frontend displaying contract editors, vulnerability highlights, and dynamic real-time audit progress meters.
 
 ---
 
-## 🎨 UI/UX Aesthetic
+## 🧠 AST Solidity Scans & Security Checks
 
-We rejected standard, generic SaaS templates in favor of a curated, high-contrast visual experience:
-* **Minimal Cyberpunk**: Deep, clinical off-black backgrounds (`#09090b` void).
-* **Glassmorphism**: Semi-transparent dark cards with backdrop blurs and subtle 1px borders.
-* **Pinterest Masonry**: Results are displayed in a staggered, dynamic masonry grid rather than a boring vertical table.
-* **Neon Semantics**: High-contrast, glowing accents dictate severity (e.g., glowing electric red for 'Critical', neon amber for 'Medium').
+The auditor incorporates multi-layered static auditing routines:
+1. **Solidity Parser Engine:**
+   - Translates Solidity files into an Abstract Syntax Tree (AST).
+   - Traverses standard node branches to identify dangerous patterns like `tx.origin` authorization, low-level calls without checks (`.call{value: ...}`), and raw assembly blocks.
+2. **Local AI Auditor Verification:**
+   - Feeds code fragments to your private local Ollama instance with specialized system instructions.
+   - Enforces a strictly validated JSON output schema detailing the isolated lines, severity rating (Critical, High, Medium, Low), attack vector description, and suggested remediations.
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### 1. Backend Setup (FastAPI)
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+### Prerequisites
+- **Python** 3.9+
+- **Node.js** 18+
+- **Ollama** installed locally (with `codellama` or `llama3` model downloaded)
+- A free **Supabase** database instance (or a local PostgreSQL container)
 
-# Copy environment template
-cp .env.example .env
-```
+### 1. Backend Service Setup (FastAPI)
 
-### 2. Configure Zero-Cost LLM (Ollama)
-Download and install [Ollama](https://ollama.com/), then pull the required model in a separate terminal:
-```bash
-ollama pull qwen2.5-coder
-```
-*The FastAPI backend will automatically detect Ollama running on `http://localhost:11434`.*
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
 
-### 3. Start Backend Server
-```bash
-python main.py
-```
-*Server runs at `http://localhost:8000` (API docs at `/docs`)*
+2. Install python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 4. Frontend Setup (React/Vite)
-Open a new terminal window:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-*Frontend runs at `http://localhost:5173`*
+3. Setup environment variables (`.env`):
+   ```properties
+   SUPABASE_URL=your_supabase_url
+   SUPABASE_KEY=your_supabase_anon_key
+   OLLAMA_HOST=http://localhost:11434
+   ```
 
----
+4. Start the backend application:
+   ```bash
+   uvicorn main:app --reload --port 8000
+   ```
 
-## 🗄️ Supabase SQL Schema
+### 2. Frontend Application Setup (React Vite)
 
-If you choose to use the free Supabase tier instead of the local SQLite fallback, run this SQL in your Supabase project's SQL Editor:
+1. Navigate to the frontend directory:
+   ```bash
+   cd ../frontend
+   ```
 
-```sql
--- Create Audit Jobs Table
-CREATE TABLE public.audit_jobs (
-    id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    contract_name TEXT DEFAULT 'Unknown',
-    contract_code TEXT NOT NULL,
-    status TEXT DEFAULT 'processing',
-    risk_score INTEGER DEFAULT 0,
-    total_vulnerabilities INTEGER DEFAULT 0,
-    critical_count INTEGER DEFAULT 0,
-    high_count INTEGER DEFAULT 0,
-    medium_count INTEGER DEFAULT 0,
-    low_count INTEGER DEFAULT 0,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
-);
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
--- Create Vulnerabilities Table
-CREATE TABLE public.vulnerabilities (
-    id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
-    audit_job_id BIGINT REFERENCES public.audit_jobs(id) ON DELETE CASCADE,
-    vulnerability_type TEXT,
-    severity TEXT,
-    line_number INTEGER,
-    description TEXT,
-    suggested_fix TEXT,
-    confidence_score INTEGER DEFAULT 0,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
-);
-```
+3. Configure environmental values (`.env`):
+   ```properties
+   VITE_API_URL=http://localhost:8000
+   ```
 
-Once executed, add your `SUPABASE_URL` and `SUPABASE_ANON_KEY` to the `backend/.env` file.
-
----
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
+4. Run the Vite development server:
+   ```bash
+   npm run dev
+   ```
 
 ---
 
