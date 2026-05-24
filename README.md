@@ -210,6 +210,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center" style="background: radial-gradient(circle, rgba(239,68,68,0.08) 0%, transparent 80%); padding: 24px; border-radius: 16px;">
   <p style="font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600; color: #ef4444; margin: 0;">
-    built by anuj with love and nicotine
+    built by anuj with ❤️ to the raw frequencies of kendrick lamar's "HUMBLE."
   </p>
 </div>
